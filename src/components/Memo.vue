@@ -7,16 +7,27 @@
   <div>
     <input type="text" v-model="text" :width="formSize" placeholder="本文を入力してください。">
   </div>
-
+  <div>
+    <input @click="submit" type="submit" value="送信！">
+  </div>
 </template>
 
 <script>
   export default {
-    title: "memoのタイトル",
-    text: "memoの本文",
-    formSize: "300",
+    data() {
+      return {
+        title: "memoのタイトル",
+        text: "memoの本文",
+        formSize: "600px",
+      }
+    },
     props: {
       pageTitle: String
+    },
+    methods: {
+      submit() {
+        console.log("hoge");
+      },
     }
   }
 
