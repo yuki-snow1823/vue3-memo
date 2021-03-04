@@ -11,21 +11,34 @@
     <input @click="submit" type="submit" value="送信！">
   </div>
 
+  <vue-markdown-it :source='source' />
+
+
   <li v-for="memo in memos" :key="memo.id">
     {{ memo.title }}：{{ memo.text }}
   </li>
 </template>
 
 <script>
+import VueMarkdownIt from 'vue3-markdown-it';
+// 今読み込めない
+// import 'markdown-it-latex/dist/index.css';
+// import 'highlight.js/styles/monokai.css';
+
   export default {
     data() {
       return {
         title: "",
         text: "",
+        value: "hoge",
         formSize: "600px",
         memos: [],
-        memo: {}
+        memo: {},
+        source: '# Hello World!'
       }
+    },
+    components: {
+      VueMarkdownIt 
     },
     props: {
       pageTitle: String
