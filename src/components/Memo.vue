@@ -11,7 +11,8 @@
     <input @click="submit" type="submit" value="送信！">
   </div>
 
-  <vue-markdown-it :source='source' />
+  <vue-markdown-editor v-model="content" />
+  <vue-markdown-it :source="source" />
 
 
   <li v-for="memo in memos" :key="memo.id">
@@ -21,6 +22,7 @@
 
 <script>
 import VueMarkdownIt from 'vue3-markdown-it';
+import VueMarkdownEditor from 'vue3-markdown-it';
 // 今読み込めない
 // import 'markdown-it-latex/dist/index.css';
 // import 'highlight.js/styles/monokai.css';
@@ -34,11 +36,13 @@ import VueMarkdownIt from 'vue3-markdown-it';
         formSize: "600px",
         memos: [],
         memo: {},
-        source: '# Hello World!'
+        source: '# Hello World!',
+        content: 'hello world',
       }
     },
     components: {
-      VueMarkdownIt 
+      VueMarkdownIt,
+      VueMarkdownEditor
     },
     props: {
       pageTitle: String
@@ -49,6 +53,7 @@ import VueMarkdownIt from 'vue3-markdown-it';
           title: this.title,
           text: this.text
         }
+        this.source = this.title;
         this.memos.push(memo);
       },
     }
