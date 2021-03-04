@@ -1,5 +1,5 @@
 <template>
-  <h1>{{ pageTitle}}</h1>
+  <h1>{{ pageTitle }}</h1>
   <!-- formサイズが変わらない -->
   <div>
     <input type="text" v-model="title" :width="formSize" placeholder="タイトルを入力してください。">
@@ -10,15 +10,21 @@
   <div>
     <input @click="submit" type="submit" value="送信！">
   </div>
+
+  <li v-for="memo in memos" :key="memo.id">
+    {{ memo.title }}：{{ memo.text }}
+  </li>
 </template>
 
 <script>
   export default {
     data() {
       return {
-        title: "memoのタイトル",
-        text: "memoの本文",
+        title: "",
+        text: "",
         formSize: "600px",
+        memos: [],
+        memo: {}
       }
     },
     props: {
@@ -26,7 +32,11 @@
     },
     methods: {
       submit() {
-        console.log("hoge");
+        let memo = {
+          title: this.title,
+          text: this.text
+        }
+        this.memos.push(memo);
       },
     }
   }
